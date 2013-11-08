@@ -16,3 +16,6 @@ div.price-slider .price-slider-to {
     cursor: w-resize;
     margin-top: -17px;
 }
+.main {
+    position: relative;
+}
