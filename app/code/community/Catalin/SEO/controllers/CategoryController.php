@@ -73,8 +73,11 @@ class Catalin_Seo_CategoryController extends Mage_Catalog_CategoryController
 
             // return json formatted response for ajax
             if ($this->getRequest()->isAjax()) {
-                $listing = $this->getLayout()->getBlock('product_list')->toHtml();
-                $layer = $this->getLayout()->getBlock('catalog.leftnav')->toHtml();
+                $product_list = $this->getLayout()->getBlock('product_list');
+                $listing = is_object($product_list) ? $product_list->toHtml() : '';
+                
+                $leftnav = $this->getLayout()->getBlock('catalog.leftnav');
+                $layer = is_object($leftnav) ? $leftnav->toHtml() : '';
                 
                 // Fix urls that contain '___SID=U'
                 $urlModel = Mage::getSingleton('core/url');
