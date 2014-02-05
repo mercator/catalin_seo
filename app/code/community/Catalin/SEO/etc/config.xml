@@ -112,6 +112,14 @@
                 </catalin_seo>
             </updates>
         </layout>
+        <catalog>
+            <ajax>
+                <blocks>
+                    <leftnav>catalog.leftnav</leftnav>
+                    <listing>product_list</listing>
+                </blocks>
+            </ajax>
+        </catalog>
     </frontend>
     <default>
         <catalin_seo>

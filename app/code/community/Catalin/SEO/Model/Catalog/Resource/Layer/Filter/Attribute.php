@@ -43,11 +43,6 @@ class Catalin_SEO_Model_Catalog_Resource_Layer_Filter_Attribute extends Mage_Cat
         $attrUrlKeyModel = Mage::getResourceModel('catalin_seo/attribute_urlkey');
         //$options = $attribute->getSource()->getAllOptions(false);
         if (!is_array($value)) {
-            foreach ($options as $option) {
-                if ($option['label'] == $value) {
-                    $value = $option['value'];
-                }
-            }
             $conditions[] = $connection->quoteInto("{$tableAlias}.value = ?", $value);
         } else {
             $conditions[] = "{$tableAlias}.value in ( ";
