@@ -114,10 +114,14 @@
         </layout>
         <catalog>
             <ajax>
-                <blocks>
+                <category>
                     <leftnav>catalog.leftnav</leftnav>
                     <listing>product_list</listing>
-                </blocks>
+                </category>
+                <search>
+                    <leftnav>catalogsearch.leftnav</leftnav>
+                    <listing>search_result_list</listing>
+                </search>
             </ajax>
         </catalog>
     </frontend>

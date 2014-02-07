@@ -19,6 +19,11 @@ require_once 'Mage/CatalogSearch/controllers/ResultController.php';
 class Catalin_Seo_ResultController extends Mage_CatalogSearch_ResultController
 {
 
+    protected function _getAjaxBlocks()
+    {
+        return Mage::getConfig()->getNode('frontend/catalog/ajax/search')->asArray();
+    }
+    
     /**
      * Display search result
      */
@@ -63,18 +68,20 @@ class Catalin_Seo_ResultController extends Mage_CatalogSearch_ResultController
 
             // return json formatted response for ajax
             if ($this->getRequest()->isAjax()) {
-                $listing = $this->getLayout()->getBlock('search_result_list')->toHtml();
-                $layer = $this->getLayout()->getBlock('catalogsearch.leftnav')->toHtml();
-                
+                $response = array();
+
                 // Fix urls that contain '___SID=U'
                 $urlModel = Mage::getSingleton('core/url');
-                $listing = $urlModel->sessionUrlVar($listing);
-                $layer = $urlModel->sessionUrlVar($layer);
 
-                $response = array(
-                    'listing' => $listing,
-                    'layer' => $layer
-                );
+                foreach($this->_getAjaxBlocks() as $frontName => $name) {
+                    $block = $this->getLayout()->getBlock($name);
+                    if(is_object($block)) {
+                        $html = $block->toHtml();
+                        $html = $urlModel->sessionUrlVar($html);
+
+                        $response[$frontName] = $html;
+                    }
+                }
 
                 $this->getResponse()->setHeader('Content-Type', 'application/json', true);
                 $this->getResponse()->setBody(json_encode($response));

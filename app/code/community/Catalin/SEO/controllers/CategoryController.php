@@ -21,7 +21,7 @@ class Catalin_Seo_CategoryController extends Mage_Catalog_CategoryController
     
     protected function _getAjaxBlocks()
     {
-        return Mage::getConfig()->getNode('frontend/catalog/ajax/blocks')->asArray();
+        return Mage::getConfig()->getNode('frontend/catalog/ajax/category')->asArray();
     }
 
     public function viewAction()
