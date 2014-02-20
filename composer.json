@@ -5,8 +5,5 @@
     "homepage": "https://github.com/mercator/catalin_seo",
     "require": {
         "magento-hackathon/magento-composer-installer": "*"
-    },
-    "extra": {
-        "package-xml": "package.xml"
     }
 }

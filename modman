@@ -1,0 +1,7 @@
+app/etc/modules/Catalin_SEO.xml                         app/etc/modules/Catalin_SEO.xml
+app/code/community/Catalin/SEO                          app/code/community/Catalin/SEO
+app/design/frontend/base/default/layout/catalin_seo.xml app/design/frontend/base/default/layout/catalin_seo.xml
+app/design/frontend/base/default/template/catalin_seo   app/design/frontend/base/default/template/catalin_seo
+skin/frontend/base/default/css/price_slider             skin/frontend/base/default/css/price_slider
+skin/frontend/base/default/images/price_slider          skin/frontend/base/default/images/price_slider
+skin/frontend/base/default/js/catalin_seo               skin/frontend/base/default/js/catalin_seo
