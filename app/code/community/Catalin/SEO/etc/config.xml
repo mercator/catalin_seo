@@ -115,11 +115,11 @@
         <catalog>
             <ajax>
                 <category>
-                    <leftnav>catalog.leftnav</leftnav>
+                    <layer>catalog.leftnav</layer>
                     <listing>product_list</listing>
                 </category>
                 <search>
-                    <leftnav>catalogsearch.leftnav</leftnav>
+                    <layer>catalogsearch.leftnav</layer>
                     <listing>search_result_list</listing>
                 </search>
             </ajax>
