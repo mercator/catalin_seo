@@ -153,13 +153,20 @@
         new Ajax.Request(fullUrl, {
             method: 'get',
             onSuccess: function(transport) {
-                if (transport.responseJSON) {                    
+                if (transport.responseJSON) {
                     $('catalog-listing').update(transport.responseJSON.listing);
-                    $('layered-navigation').update(transport.responseJSON.layer);
-                    pushState({
-                        listing: transport.responseJSON.listing,
-                        layer: transport.responseJSON.layer
-                    }, url, true);
+                    var nav = $('layered-navigation');
+                    if(nav) {
+                        nav.update(transport.responseJSON.layer);
+                    }
+
+                    var stateData = {
+                        listing: transport.responseJSON.listing
+                    };
+                    if(nav) {
+                        stateData.layer = transport.responseJSON.layer;
+                    }
+                    pushState(stateData, url, true);
                     ajaxListener();
                 } else {
                     $('ajax-errors').show();
@@ -201,17 +208,23 @@
                 return false;
             }
 
-            pushState({
-                listing: $('catalog-listing').innerHTML,
-                layer: $('layered-navigation').innerHTML
-            }, document.location.href, true);
+            var stateData = {
+                listing: $('catalog-listing').innerHTML
+            };
+            var nav = $('layered-navigation');
+            if(nav) {
+                stateData.layer = nav.innerHTML;
+            }
+            pushState(stateData, document.location.href, true);
 
             // Bind to StateChange Event
             History.Adapter.bind(window, 'popstate', function(event) {
                 if (event.type == 'popstate') {
                     var State = History.getState();
                     $('catalog-listing').update(State.data.listing);
-                    $('layered-navigation').update(State.data.layer);
+                    if(nav) {
+                        nav.update(State.data.layer);
+                    }
                     ajaxListener();
                 }                
             });
